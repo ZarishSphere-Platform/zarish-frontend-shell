@@ -1,74 +1,68 @@
-import { useState } from 'react';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [showInfo, setShowInfo] = useState(false);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-xl text-center max-w-2xl">
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-          Zarish Sphere Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Enterprise-grade FHIR HL7 Server for Healthcare Data Management
-        </p>
-
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="bg-blue-50 p-4 rounded">
-            <h3 className="font-semibold text-blue-900">FHIR R4/R5</h3>
-            <p className="text-sm text-blue-700">Compliant Server</p>
-          </div>
-          <div className="bg-indigo-50 p-4 rounded">
-            <h3 className="font-semibold text-indigo-900">BD Core</h3>
-            <p className="text-sm text-indigo-700">Standards Integrated</p>
-          </div>
-          <div className="bg-purple-50 p-4 rounded">
-            <h3 className="font-semibold text-purple-900">Elasticsearch</h3>
-            <p className="text-sm text-purple-700">Full-text Search</p>
-          </div>
-          <div className="bg-pink-50 p-4 rounded">
-            <h3 className="font-semibold text-pink-900">Kubernetes</h3>
-            <p className="text-sm text-pink-700">Ready to Deploy</p>
-          </div>
-        </div>
-
-        <button
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all shadow-md"
-          onClick={() => setShowInfo(!showInfo)}
-        >
-          {showInfo ? 'Hide' : 'Show'} Technical Details
-        </button>
-
-        {showInfo && (
-          <div className="mt-6 text-left bg-gray-50 p-4 rounded">
-            <h3 className="font-semibold mb-2">Technology Stack:</h3>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• Go (Gin Framework) - Backend Services</li>
-              <li>• PostgreSQL - Primary Database</li>
-              <li>• Elasticsearch - Search Engine</li>
-              <li>• Redis - Caching Layer</li>
-              <li>• Keycloak - Authentication (local deployment)</li>
-              <li>• React + TypeScript - Frontend</li>
-              <li>• Kubernetes - Orchestration</li>
-            </ul>
-            <div className="mt-4">
-              <a
-                href="https://github.com/ZarishSphere-Platform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 underline"
-              >
-                View on GitHub →
-              </a>
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        {/* Navigation Bar */}
+        <nav className="bg-white shadow-sm border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between h-16">
+              <div className="flex">
+                <div className="flex-shrink-0 flex items-center">
+                  <span className="text-xl font-bold text-blue-600">Zarish Platform Shell</span>
+                </div>
+                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                  <a
+                    href="http://localhost:8084"
+                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  >
+                    Open HIS Module
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <button className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                  Login
+                </button>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+        </nav>
 
-      <p className="mt-8 text-gray-500 text-sm">
-        © 2025 Zarish Sphere Platform | Open Source Healthcare Solution
-      </p>
-    </div>
+        {/* Main Content */}
+        <main className="py-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white shadow rounded-lg p-6">
+              <h2 className="text-2xl font-bold mb-4">Welcome to Zarish Sphere Platform</h2>
+              <p className="text-gray-600 mb-4">
+                This is the platform shell. Access individual modules using the navigation above.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <h3 className="text-lg font-semibold mb-2">Hospital Information System</h3>
+                  <p className="text-sm text-gray-500 mb-4">Manage patients, appointments, and clinical data.</p>
+                  <a href="http://localhost:8084" className="text-blue-600 hover:text-blue-800 font-medium">Launch HIS &rarr;</a>
+                </div>
+                {/* Other modules placeholders */}
+                <div className="border rounded-lg p-4 hover:shadow-md transition-shadow opacity-50">
+                  <h3 className="text-lg font-semibold mb-2">Finance (Coming Soon)</h3>
+                  <p className="text-sm text-gray-500 mb-4">Billing, insurance, and accounting.</p>
+                </div>
+                <div className="border rounded-lg p-4 hover:shadow-md transition-shadow opacity-50">
+                  <h3 className="text-lg font-semibold mb-2">HR (Coming Soon)</h3>
+                  <p className="text-sm text-gray-500 mb-4">Staff management and payroll.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Routes>
+            <Route path="/" element={<div />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
